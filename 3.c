@@ -58,7 +58,11 @@ int main(){
     }
 }
 
-/*converts the pairs array to the pixels array*/
+/*converts the pairs array to the pixels array
+because when asigning to the pairs array the values of i (k in seen in this function) start from 3 
+k has been initialized to 3 to compensate
+a counter is used to keep track of how many of each pixel of each pair has been assigned and when they are equal
+the code moves on to the next pair*/
 int convert_to_array(){
     k = 3;
     for(i = 0; i < height; i++){
@@ -83,12 +87,16 @@ int size_up_array(){
     /*scale up the array and calculate in-between values*/
     for(i = 0; i < height; i++){
         for(j = 0; j < width; j++){
+
             /*scale up the array removes '0' to convert form char to int*/
             larger_pixels[i*2][j*2] = ((pixels[i][j] - '0'));
+
             /*calculate the value for the pixel to the right*/
             larger_pixels[i*2][j*2 + 1] = (((pixels[i][j] - '0') + (pixels[i][j+1] - '0')) / 2 );
+
             /*calculate the value for the pixel below*/
             larger_pixels[i*2 + 1][j*2]  = ((float)((pixels[i][j] - '0') + (pixels[i+1][j] - '0')) / 2 );
+
             /*calculate the value for the pixel diagonal to the bottom right has to be asigned to a float and then converted to an integer
             the +0.25 is so that when its converted to an integer its truncated to the correct value*/
             temp_float = ((float)((pixels[i][j] - '0') + (pixels[i][j+1] - '0') + (pixels[i+1][j] - '0') + (pixels[i+1][j+1] - '0')) / 4 + 0.25);
@@ -102,6 +110,7 @@ int size_up_array(){
 int smooth_array_1(){
     for(i = 0; i <= new_height - 1; i++){
         for(j = 0; j <= new_width - 1; j++){
+            
             /*if its the border pixel dosent run the smoothing operation*/
             if (i == 0 || j == 0 || i == new_height-2 || j == new_width-2){
                 smoothed[i][j] = larger_pixels[i][j];
