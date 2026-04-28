@@ -12,12 +12,15 @@ int p1, p2, p3, p4, S_counter = 0;
 
 int pixels[10000][10000];
 int gradient[10000][10000];
+
 int convert_to_array();
 int grade_checker();
 int convert_to_black_and_white();
 
+/*takes the input and processes it then runs the functions and prints the result*/
 int main(){
 
+    /*gets the input values*/
     fgets(input, 10000, stdin);
 
     token = strtok(input, " ");
@@ -33,15 +36,7 @@ int main(){
         token = strtok(NULL, " ");
         pairs[i][1] = atoi(token);
     }
-    /*
-    printing_function();
-    for (i = 0; i < height; i++){
-        for (j = 0; j < width; j++){
-            printf("%c", pixels[i][j]);
-        }
-        printf("\n");
-    }
-    */
+
     convert_to_array();
     grade_checker();
     convert_to_black_and_white();

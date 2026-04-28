@@ -10,8 +10,10 @@ int i, j, k, l, width, height, grey_value, width_counter = 0;
 
 int printing_function();
 
+/*takes the input and processes it then runs the functions and prints the result*/
 int main(){
 
+    /*gets the input values*/
     fgets(input, 10000, stdin);
 
     token = strtok(input, " ");
